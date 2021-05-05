@@ -39,7 +39,7 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 - **[Blade UIkit](https://blade-ui-kit.com/)**
 - **[Livewire](https://laravel-livewire.com/docs/2.x/quickstart)**
 - **[Intervention Image](http://image.intervention.io/getting_started/introduction)**
-- **[Many](https://www.many.co.uk)**
+- **[Estados, Municipios, Bairros e Regiões do Brasil](https://github.com/chandez/Estados-Cidades-IBGE)**
 - **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
 - **[DevSquad](https://devsquad.com)**
 - **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
