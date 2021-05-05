@@ -83,13 +83,14 @@ class SlidesController extends Controller
         $slide->setData($slide, $request->all());
         if($request->file){
             $files = new Files;
-            $files->upload($files,$request->image);
+            $files->upload($files,$request->file);
             $slide->files_id = $files->id;
         }
 
         try{
             $slide->save();
         }catch(\Exception $e){
+            // dd($e);
             return redirect()->back()->with('error','Erro ao atualizar slide. Por favor entrar em contao com o suporte!');
         }
 

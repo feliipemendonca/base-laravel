@@ -18,32 +18,33 @@
                             </div>
                         </div>
                     </div>
-                    <x-form action="{{ route('dashboard.slides.store') }}" has-files>
+                    <x-form action="{{ route('dashboard.slides.update', $item) }}" has-files>
+                        @method('put')
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 col-lg-8">
                                     <div class="form-group">
                                         <x-label for="Title" />
-                                        <x-input name="title" class="form-control" value="{{ old('name') }}" />
+                                        <x-input name="title" class="form-control" value="{{ $item->title }}" />
                                         <x-error field="title" class="text-danger" />
                                     </div>
                                     <div class="form-group">
                                         <x-label for="Link" />
-                                        <x-input name="link" type="url" class="form-control" value="{{ old('link') }}" />
+                                        <x-input name="link" type="url" class="form-control" value="{{ $item->link }}" />
                                         <x-error field="link" class="text-danger" />
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-12 col-md-6">
                                             <x-label for="ativo" />
                                             <select name="active" class="form-control">
-                                                <option value="1" {{ old('active') == 1 ? 'selected' : '' }}>Sim</option>
-                                                <option value="0" {{ old('active') == 0 ? 'selected' : '' }}>Não</option>
+                                                <option value="1" {{ $item->active == 1 ? 'selected' : '' }}>Sim</option>
+                                                <option value="0" {{ $item->active == 0 ? 'selected' : '' }}>Não</option>
                                             </select>
                                             <x-error field="active" class="text-danger" />
                                         </div>
                                         <div class="form-group col-12 col-md-6">
                                             <x-label for="Posição" />
-                                            <x-input name="position" type="number" class="form-control" value="{{ old('position') }}" />
+                                            <x-input name="position" type="number" class="form-control" value="{{ $item->position }}" />
                                             <x-error field="position" class="text-danger" />
                                         </div>
                                     </div>
@@ -58,7 +59,7 @@
                                                         </span>
                                                     </div>
                                                     <x-input class="form-control" placeholder="Inicio" name="start_at"
-                                                        type="date" value="{{ old('start_at') }}" />
+                                                        type="date" value="{{ $item->start_at }}" />
                                                 </div>
                                                 <x-error field="start_at" class="text-danger" />
                                             </div>
@@ -73,7 +74,7 @@
                                                         </span>
                                                     </div>
                                                     <x-input class="form-control" placeholder="Fim" name="finish_at"
-                                                        type="date" value="{{ old('finish_at') }}" />
+                                                        type="date" value="{{ $item->finish_at }}" />
                                                 </div>
                                                 <x-error field="finish_at" class="text-danger" />
                                             </div>
@@ -84,7 +85,7 @@
                                     <div class="form-group">
                                         <x-label for="Imagem" />
                                         <x-input name="file" type="file" id="input-image"/>
-                                        <img id="imagem" class="img-fluid" src="">
+                                        <img id="imagem" class="img-fluid" src="{{ Storage::url($item->files->filename) }}">
                                         <x-error field="file" />
                                     </div>
                                 </div>
@@ -93,7 +94,7 @@
                         <!-- Card footer -->
                         <div class="card-footer py-4">
                             <nav class="d-flex justify-content-end" aria-label="...">
-                                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                <button type="submit" class="btn btn-primary">Atualizar</button>
                             </nav>
                         </div>
                     </x-form>

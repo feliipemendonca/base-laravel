@@ -3,13 +3,16 @@
     <div class="card-header border-0">
 
         <div class="row">
-            <div class="col-sm-12 col-md-8">
-                <h3 class="mb-0">Lista</h3>
+            <div class="col-12 col-sm-3 col-md-3 col-lg-4 col-xl-7">
+                <h3 class="mb-0">Adicionar</h3>
             </div>
-            <div class="col-sm-12 col-md-4">
+            <div class="col-8 col-sm-5 col-md-6 col-lg-6 col-xl-4">
                 <div id="datatable-basic_filter" class="dataTables_filter">
                     <input wire:model="search" class="form-control form-control-sm" type="text" placeholder="Pesquisar">
                 </div>
+            </div>
+            <div class="col-4 col-md-3 col-lg-2 col-xl-1">
+                <a href="{{ route('dashboard.slides.create') }}" class="btn btn-danger btn-sm">Adicionar</a>
             </div>
         </div>
     </div>
@@ -31,10 +34,13 @@
                 @foreach ($items as $item)
                     <tr>
                         <th>
-                            <img src="{{ Storage::get($item->files->filename) }}" width="300">
+                            <img src="{{ Storage::url($item->files->filename) }}" width="200">
                         </th>
                         <td class="budget">
                             {{ $item->title }}
+                        </td>
+                        <td class="budget">
+                            {{ $item->position }}
                         </td>
                         <td>
                             <p class="badge badge-{{ $item->active == 1 ? 'success' : 'danger' }}">

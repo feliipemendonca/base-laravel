@@ -52,6 +52,7 @@ class Files extends Model
                 Image::make($contents)->save($path);
                 
                 $file->name = $imageName;
+                $file->filename = $imageName;
                 $file->path = 'storage/' . $imageName;
                 $file->save();
 

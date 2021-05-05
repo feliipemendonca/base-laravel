@@ -14,7 +14,7 @@ class AddGallerysIdTableFiles extends Migration
     public function up()
     {
         Schema::table('files', function (Blueprint $table) {
-            $table->uuid('gallerys_id')->after('id');
+            $table->uuid('gallerys_id')->after('id')->nullable();
             $table->foreign('gallerys_id')->references('id')->on('gallerys')->onDelete('cascade');
         });
     }
