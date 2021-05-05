@@ -23,7 +23,7 @@
                     <div class=" dropdown-header noti-title">
                         <h6 class="text-overflow m-0">{{ __('Welcome!') }}</h6>
                     </div>
-                    <a href="{{ route('profile.edit') }}" class="dropdown-item">
+                    <a href="{{ route('dashboard.profile.edit') }}" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
                         <span>{{ __('My profile') }}</span>
                     </a>
@@ -63,7 +63,7 @@
                 @foreach ($items as $item)
                     <li class="nav-item">
                         <a class="nav-link @isset($item['links']) @foreach ($item['links'] as
-                            $link) {{ Route::is($link['link']) ? 'active' : '' }} @endforeach @endisset" href="">
+                            $link) {{ Route::is($link['link']) ? 'active' : '' }} @endforeach @endisset" href="{{ route($item['link']) }}">
                             {!! $item['icon'] !!} {{ __($item['name']) }}
                         </a>
                     </li>

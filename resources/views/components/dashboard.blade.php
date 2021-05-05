@@ -45,7 +45,8 @@
                         <h1 class="display-2 text-white">{{ '' }}</h1>
                         <div class="text-white mt-0 mb-5">{!! @$description !!}</div>
                     </div>
-                    {{ @$header }}
+                    <div class="col-12">{{ @$header }}</div>
+                    
                 </div>
             </div>
         </div>

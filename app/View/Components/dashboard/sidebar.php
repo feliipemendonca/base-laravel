@@ -32,49 +32,16 @@ class sidebar extends Component
                     'link' => 'home'
                 ],
                 [
-                    'name' => 'Categorias',
+                    'name' => 'Slides',
                     'icon' => "<i class='ni ni-briefcase-24 text-danger'></i>",
-                    'link' => 'categories.index',
+                    'link' => 'dashboard.slides.index',
                     'links' => [
-                        ['link' => 'categories.index'],
-                        ['link' => 'categories.create'],
-                        ['link' => 'categories.show'],
-                        ['link' => 'categories.edit']
+                        ['link' => 'dashboard.slides.index'],
+                        ['link' => 'dashboard.slides.create'],
+                        ['link' => 'dashboard.slides.show'],
+                        ['link' => 'dashboard.slides.edit']
                     ]
                 ],
-                [
-                    'name' => 'Usuarios',
-                    'icon' => "<i class='fas fa-users text-warning'></i>",
-                    'link' => 'users.index',
-                    'links' => [
-                        ['link' => 'users.index'],
-                        ['link' => 'users.create'],
-                        ['link' => 'users.show'],
-                        ['link' => 'users.edit']
-                    ]
-                ],
-                [
-                    'name' => 'Postagens',
-                    'icon' => "<i class='fas fa-mail-bulk text-danger'></i>",
-                    'link' => 'posts.index',
-                    'links' => [
-                        ['link' => 'posts.index'],
-                        ['link' => 'posts.create'],
-                        ['link' => 'posts.show'],
-                        ['link' => 'posts.edit']
-                    ]
-                ],
-                [
-                    'name' => 'Paginas Estáticas',
-                    'icon' => "<i class='fas fa-file text-blue'></i>",
-                    'link' => 'pages.index',
-                    'links' => [
-                        ['link' => 'pages.index'],
-                        ['link' => 'pages.create'],
-                        ['link' => 'pages.show'],
-                        ['link' => 'pages.edit']
-                    ]
-                ]
             ]
         ]);
     }
