@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\dashboard\BlogsController;
 use App\Http\Controllers\dashboard\SlidesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,5 +34,6 @@ Route::group(['prefix' => 'dashboard' ,'as' => 'dashboard.','middleware' => 'aut
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
 	Route::resource('slides', SlidesController::class);
+	Route::resource('blog', BlogsController::class);
 });
 

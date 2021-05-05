@@ -24,7 +24,7 @@
                                 <div class="col-12 col-lg-8">
                                     <div class="form-group">
                                         <x-label for="Title" />
-                                        <x-input name="title" class="form-control" value="{{ old('name') }}" />
+                                        <x-input name="title" class="form-control" value="{{ old('title') }}" />
                                         <x-error field="title" class="text-danger" />
                                     </div>
                                     <div class="form-group">

@@ -42,6 +42,17 @@ class sidebar extends Component
                         ['link' => 'dashboard.slides.edit']
                     ]
                 ],
+                [
+                    'name' => 'Blog',
+                    'icon' => "<i class='ni ni-briefcase-24 text-danger'></i>",
+                    'link' => 'dashboard.blog.index',
+                    'links' => [
+                        ['link' => 'dashboard.blog.index'],
+                        ['link' => 'dashboard.blog.create'],
+                        ['link' => 'dashboard.blog.show'],
+                        ['link' => 'dashboard.blog.edit']
+                    ]
+                ],
             ]
         ]);
     }

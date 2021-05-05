@@ -10,6 +10,13 @@ class Blogs extends Model
 {
     use HasFactory, Sluggable;
 
+    protected $table = "blogs";
+    protected $fillable = [
+        'files_id',
+        'title',
+        'description',
+    ];
+
     public function sluggable(): array
     {
         return [
@@ -17,5 +24,10 @@ class Blogs extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public function files()
+    {
+        return $this->belongsTo('App\Models\Files');
     }
 }
