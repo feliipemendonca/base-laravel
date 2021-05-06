@@ -53,6 +53,17 @@ class sidebar extends Component
                         ['link' => 'dashboard.blog.edit']
                     ]
                 ],
+                [
+                    'name' => 'Páginas Estáticas',
+                    'icon' => "<i class='ni ni-briefcase-24 text-danger'></i>",
+                    'link' => 'dashboard.pages.index',
+                    'links' => [
+                        ['link' => 'dashboard.pages.index'],
+                        ['link' => 'dashboard.pages.create'],
+                        ['link' => 'dashboard.pages.show'],
+                        ['link' => 'dashboard.pages.edit']
+                    ]
+                ],
             ]
         ]);
     }

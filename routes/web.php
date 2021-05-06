@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\dashboard\BlogsController;
+use App\Http\Controllers\dashboard\PagesController;
 use App\Http\Controllers\dashboard\SlidesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,5 +36,6 @@ Route::group(['prefix' => 'dashboard' ,'as' => 'dashboard.','middleware' => 'aut
 
 	Route::resource('slides', SlidesController::class);
 	Route::resource('blog', BlogsController::class);
+	Route::resource('pages', PagesController::class);
 });
 
