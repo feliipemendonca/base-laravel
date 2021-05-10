@@ -75,6 +75,17 @@ class sidebar extends Component
                         ['link' => 'dashboard.settings.edit']
                     ]
                 ],
+                [
+                    'name' => 'Produtos',
+                    'icon' => "<i class='ni ni-briefcase-24 text-danger'></i>",
+                    'link' => 'dashboard.products.index',
+                    'links' => [
+                        ['link' => 'dashboard.products.index'],
+                        ['link' => 'dashboard.products.create'],
+                        ['link' => 'dashboard.products.show'],
+                        ['link' => 'dashboard.products.edit']
+                    ]
+                ],
             ]
         ]);
     }

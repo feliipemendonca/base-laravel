@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->uuid('id')->primary();
             $table->text('title');
             $table->text('about');
-            $table->text('desciption');
+            $table->text('description');
             $table->float('value')->nullable();
             $table->text('slug');
             $table->timestamps();

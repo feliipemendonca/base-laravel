@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\dashboard\BlogsController;
 use App\Http\Controllers\dashboard\PagesController;
+use App\Http\Controllers\dashboard\ProductsConttoller;
 use App\Http\Controllers\dashboard\SettingsConttoller;
 use App\Http\Controllers\dashboard\SlidesController;
 use Illuminate\Support\Facades\Auth;
@@ -39,5 +40,6 @@ Route::group(['prefix' => 'dashboard' ,'as' => 'dashboard.','middleware' => 'aut
 	Route::resource('blog', BlogsController::class);
 	Route::resource('pages', PagesController::class);
 	Route::resource('settings', SettingsConttoller::class);
+	Route::resource('products', ProductsConttoller::class);
 });
 

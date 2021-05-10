@@ -2,13 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class Products extends Model
 {
-    use HasFactory, Sluggable;
+    use Sluggable;
+
+    protected $fillable = [
+        'files_id',
+        'title',
+        'about',
+        'description',
+        'value',
+    ];
 
     public function sluggable(): array
     {
@@ -17,5 +24,10 @@ class Products extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public function files()
+    {
+        return $this->belongsTo('App\Models\Files');
     }
 }
