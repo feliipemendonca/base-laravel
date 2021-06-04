@@ -40,7 +40,7 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 - **[Livewire](https://laravel-livewire.com/docs/2.x/quickstart)**
 - **[Intervention Image](http://image.intervention.io/getting_started/introduction)**
 - **[Estados, Municipios, Bairros e Regiões do Brasil](https://github.com/chandez/Estados-Cidades-IBGE)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[Laravel Minify Html](https://packagist.org/packages/workspace/laravel-minify-html)**
 - **[DevSquad](https://devsquad.com)**
 - **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
 - **[OP.GG](https://op.gg)**

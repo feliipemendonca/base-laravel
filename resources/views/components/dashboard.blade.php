@@ -38,7 +38,7 @@
             <x-dashboard.navbar :title="$title"/>
         @endauth
         <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
-            <span class="mask bg-gradient-primary opacity-8"></span>
+            <span class="mask bg-gradient-dark opacity-8"></span>
             <div class="container-fluid d-flex align-items-center">
                 <div class="row w-100">
                     <div class="col-md-12 {{ @$class ?? '' }}">
@@ -51,9 +51,11 @@
             </div>
         </div>
         {{ $content }}
+        @auth()
         <div class="container-fluid">
             <x-dashboard.footer />
         </div>
+        @endauth
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -72,6 +74,23 @@
         @endif
 
         @if(session('error'))
+            Swal.fire(
+                'Erro!',
+                '{!! session('error') !!}',
+                'error',
+            )
+        @endif
+
+        @if(session('status'))
+            Swal.fire(
+                'Sucesso',
+                '{!! session('success') !!}',
+                'success'
+                
+            )
+        @endif
+
+        @if(session('info'))
             Swal.fire(
                 'Erro!',
                 '{!! session('error') !!}',
