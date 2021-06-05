@@ -58,7 +58,7 @@
                         </td>
                         <td>
                             <div class="dropdown">
-                                <a class="btn" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                <a class="btn text-danger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
                                     <i class="ni ni-archive-2"></i>Opções
                                 </a>

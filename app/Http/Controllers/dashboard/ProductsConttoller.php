@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductsRequest;
 use App\Models\Files;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsConttoller extends Controller
 {
@@ -35,7 +37,7 @@ class ProductsConttoller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductsRequest $request)
     {
         $file = new Files;
 
@@ -86,12 +88,13 @@ class ProductsConttoller extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Products $product)
+    public function update(ProductsRequest $request, Products $product)
     {
         if($request->file):
             $file = new Files;
 
             try {
+                Storage::delete($product->files->filename);
                 $file->upload($file, $request->file);
             } catch (\Throwable $th) {
                 // throw $th;
@@ -120,6 +123,12 @@ class ProductsConttoller extends Controller
      */
     public function destroy(Products $product)
     {
+        try {
+            Storage::delete($product->files->filename);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->with('error','Erro ao apagar imagem. Por favor entrar em contao com o suporte!');
+        }
         try {
             $product->delete();
         } catch (\Throwable $th) {

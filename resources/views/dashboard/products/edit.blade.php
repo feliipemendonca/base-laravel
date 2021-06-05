@@ -29,6 +29,11 @@
                                         <x-error field="title" class="text-danger" />
                                     </div>
                                     <div class="form-group">
+                                        <x-label for="Valor" />
+                                        <x-input name="value" class="form-control money" value="{{ $item->value }}" />
+                                        <x-error field="value" class="text-danger" />
+                                    </div>
+                                    <div class="form-group">
                                         <x-label for="Sobre" />
                                         <x-textarea name="about" class="form-control" id="about">{{ $item->about }}</x-textarea>
                                         <x-error field="about" class="text-danger" />
@@ -53,34 +58,12 @@
                         <!-- Card footer -->
                         <div class="card-footer py-4">
                             <nav class="d-flex justify-content-end" aria-label="...">
-                                <button type="submit" class="btn btn-primary">Atualizar</button>
+                                <button type="submit" class="btn btn-dark">Atualizar</button>
                             </nav>
                         </div>
                     </x-form>
                 </div>
             </div>
         </div>
-    </x-slot>
-    <x-slot name="js">
-        <script src="//cdn.ckeditor.com/4.14.1/basic/ckeditor.js"></script>
-        <script>
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader()
-                    reader.onload = function(e) {
-                        $('#imagem').attr('src', e.target.result)
-                    }
-                    reader.readAsDataURL(input.files[0])
-                }
-            }
-            $('#input-image').change(function() {
-                readURL(this)
-            })
-
-            window.onload = function() {
-                CKEDITOR.replace('content');
-                CKEDITOR.replace('about');
-            };
-        </script>
     </x-slot>
 </x-dashboard>

@@ -39,6 +39,25 @@
         //     ]
         // ],
         [
+            'name' => 'Produtos',
+            'icon' => "<i class='fas fa-shopping-cart text-gray-dark'></i>",
+            'link' => 'dashboard.products.index',
+            'links' => [
+                ['link' => 'dashboard.products.index'],
+                ['link' => 'dashboard.products.create'],
+                ['link' => 'dashboard.products.show'],
+                ['link' => 'dashboard.products.edit']
+            ]
+        ],
+    ];
+
+    $settings = [
+          [
+            'name' => 'Minha Conta',
+            'icon' => "<i class='fas fa-user-circle text-danger'></i>",
+            'link' => 'dashboard.profile.edit',
+        ],
+        [
             'name' => 'Configurações',
             'icon' => "<i class='fas fa-cogs text-default'></i>",
             'link' => 'dashboard.settings.index',
@@ -48,18 +67,7 @@
                 ['link' => 'dashboard.settings.show'],
                 ['link' => 'dashboard.settings.edit']
             ]
-        ],
-        [
-            'name' => 'Produtos',
-            'icon' => "<i class='ni ni-briefcase-24 text-danger'></i>",
-            'link' => 'dashboard.products.index',
-            'links' => [
-                ['link' => 'dashboard.products.index'],
-                ['link' => 'dashboard.products.create'],
-                ['link' => 'dashboard.products.show'],
-                ['link' => 'dashboard.products.edit']
-            ]
-        ],
+        ]
     ];
 @endphp
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
@@ -123,6 +131,18 @@
             </div>
             <ul class="navbar-nav">
                 @foreach ($items as $item)
+                    <li class="nav-item">
+                        <a class="nav-link @isset($item['links']) @foreach ($item['links'] as
+                            $link) {{ Route::is($link['link']) ? 'active' : '' }} @endforeach @endisset" href="{{ route($item['link']) }}">
+                            {!! $item['icon'] !!} {{ __($item['name']) }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+            <hr class="my-3">
+            <h6 class="navbar-heading text-muted">Configurações</h6>
+            <ul class="navbar-nav">
+                @foreach ($settings as $item)
                     <li class="nav-item">
                         <a class="nav-link @isset($item['links']) @foreach ($item['links'] as
                             $link) {{ Route::is($link['link']) ? 'active' : '' }} @endforeach @endisset" href="{{ route($item['link']) }}">

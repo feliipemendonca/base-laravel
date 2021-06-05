@@ -13,4 +13,10 @@ $('#input-image').change(function() {
 
 window.onload = function() {
     CKEDITOR.replace('content');
+    CKEDITOR.replace('about');
 };
+
+$('.money').mask('R$ 000.000.000.000.000,00', {reverse: true})
+$('.js-example-basic').select2({
+    closeOnSelect: true
+});
