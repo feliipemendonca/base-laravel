@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SlidesRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Files;
 use App\Models\Slides;
 use Illuminate\Http\Request;
@@ -31,17 +33,19 @@ class SlidesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SlidesRequest $request)
     {
-        $files = new Files;
-        $files->upload($files, $request->file);
-
-        $slides = new Slides;
-        $slides->setData($slides, $request->all());
-        $slides->files_id = $files->id;
+        $file = new Files;
+        try {
+            $file->upload($file, $request->file);
+            $request['files_id'] = $file->id;
+        } catch (\Throwable $th) {
+            // throw $th;
+            return redirect()->back()->with('error','Erro ao cadastrar imagem!');
+        }
 
         try{
-            $slides->save();
+            Slides::create($request->all());
         }catch(\Exception $e){
             return redirect()->back()->with('error','Erro ao cadastrar slide. Por favor entrar em contao com o suporte!');
         }
@@ -78,14 +82,23 @@ class SlidesController extends Controller
      * @param  \App\Models\Slides  $slides
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Slides $slide)
+    public function update(SlidesRequest $request, Slides $slide)
     {
+        if($request->file):
+            $file = new Files;
+            try {
+                Storage::delete($slide->files->filename);
+                $file->upload($file, $request->file);
+            } catch (\Throwable $th) {
+                // throw $th;
+                return redirect()->back()->with('error','Erro ao atualizar imagem!');
+            }
+
+            $slide->files_id = $file->id;
+
+        endif;
+
         $slide->setData($slide, $request->all());
-        if($request->file){
-            $files = new Files;
-            $files->upload($files,$request->file);
-            $slide->files_id = $files->id;
-        }
 
         try{
             $slide->save();
@@ -105,6 +118,12 @@ class SlidesController extends Controller
      */
     public function destroy(Slides $slide)
     {
+        try {
+            Storage::delete($slide->files->filename);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->with('error','Erro ao apagar imagem. Por favor entrar em contao com o suporte!');
+        }
         try{
             $slide->delete();
         }catch(\Exception $e){

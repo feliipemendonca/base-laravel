@@ -83,9 +83,10 @@
                                 <div class="col-12 col-lg-4">
                                     <div class="form-group">
                                         <x-label for="Imagem" />
+                                        <br>
                                         <x-input name="file" type="file" id="input-image"/>
                                         <img id="imagem" class="img-fluid" src="">
-                                        <x-error field="file" />
+                                        <x-error field="file" class="text-danger" />
                                     </div>
                                 </div>
                             </div>
@@ -93,28 +94,12 @@
                         <!-- Card footer -->
                         <div class="card-footer py-4">
                             <nav class="d-flex justify-content-end" aria-label="...">
-                                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                <button type="submit" class="btn btn-dark">Cadastrar</button>
                             </nav>
                         </div>
                     </x-form>
                 </div>
             </div>
         </div>
-    </x-slot>
-    <x-slot name="js">
-        <script>
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader()
-                    reader.onload = function(e) {
-                        $('#imagem').attr('src', e.target.result)
-                    }
-                    reader.readAsDataURL(input.files[0])
-                }
-            }
-            $('#input-image').change(function() {
-                readURL(this)
-            })
-        </script>
     </x-slot>
 </x-dashboard>

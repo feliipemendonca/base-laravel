@@ -1,3 +1,67 @@
+@php
+    $items = [
+        [
+            'name' => 'Dashbord',
+            'icon' => "<i class='ni ni-tv-2 text-primary'></i>",
+            'link' => 'home'
+        ],
+        [
+            'name' => 'Slides',
+            'icon' => "<i class='fab fa-slideshare text-blue'></i>",
+            'link' => 'dashboard.slides.index',
+            'links' => [
+                ['link' => 'dashboard.slides.index'],
+                ['link' => 'dashboard.slides.create'],
+                ['link' => 'dashboard.slides.show'],
+                ['link' => 'dashboard.slides.edit']
+            ]
+        ],
+        [
+            'name' => 'Blog',
+            'icon' => "<i class='ni ni-briefcase-24 text-danger'></i>",
+            'link' => 'dashboard.blog.index',
+            'links' => [
+                ['link' => 'dashboard.blog.index'],
+                ['link' => 'dashboard.blog.create'],
+                ['link' => 'dashboard.blog.show'],
+                ['link' => 'dashboard.blog.edit']
+            ]
+        ],
+        [
+            'name' => 'Páginas Estáticas',
+            'icon' => "<i class='ni ni-briefcase-24 text-danger'></i>",
+            'link' => 'dashboard.pages.index',
+            'links' => [
+                ['link' => 'dashboard.pages.index'],
+                ['link' => 'dashboard.pages.create'],
+                ['link' => 'dashboard.pages.show'],
+                ['link' => 'dashboard.pages.edit']
+            ]
+        ],
+        [
+            'name' => 'Configurações',
+            'icon' => "<i class='ni ni-briefcase-24 text-danger'></i>",
+            'link' => 'dashboard.settings.index',
+            'links' => [
+                ['link' => 'dashboard.settings.index'],
+                ['link' => 'dashboard.settings.create'],
+                ['link' => 'dashboard.settings.show'],
+                ['link' => 'dashboard.settings.edit']
+            ]
+        ],
+        [
+            'name' => 'Produtos',
+            'icon' => "<i class='ni ni-briefcase-24 text-danger'></i>",
+            'link' => 'dashboard.products.index',
+            'links' => [
+                ['link' => 'dashboard.products.index'],
+                ['link' => 'dashboard.products.create'],
+                ['link' => 'dashboard.products.show'],
+                ['link' => 'dashboard.products.edit']
+            ]
+        ],
+    ];
+@endphp
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
@@ -5,8 +69,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            {{-- <img src="{{ asset('images/icons/logo.svg') }}" class="navbar-brand-img" alt="Comunidade Uzzipay"> --}}
-            Argila Tecnologias
+            <img src="{{ asset('argon/img/brand/logo.svg') }}" class="navbar-brand-img w-100" alt="{{ env('APP_NAME') }}">
         </a>
         <ul class="nav align-items-center d-md-none">
             <li class="nav-item dropdown">
@@ -14,7 +77,7 @@
                     aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                            {{-- <img alt="Image placeholder" src="{{ asset('images/min/avatar-woman.svg') }}"> --}}
+                            <img alt="Image placeholder" src="{{ asset('images/min/avatar-woman.svg') }}">
                             Argila
                         </span>
                     </div>
@@ -45,8 +108,7 @@
                 <div class="row">
                     <div class="col-6 collapse-brand">
                         <a href="{{ route('home') }}">
-                            {{-- <img src="{{ asset('images/icons/logo.svg') }}"> --}}
-                            Argila
+                            <img src="{{ asset('argon/img/brand/logo.svg') }}" class="navbar-brand-img w-100" alt="{{ env('APP_NAME') }}">
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -69,7 +131,7 @@
                     </li>
                 @endforeach
             </ul>
-            {{-- <hr class="my-3">
+            <hr class="my-3">
             <h6 class="navbar-heading text-muted">Documentation</h6>
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
@@ -90,7 +152,7 @@
                         <i class="ni ni-ui-04"></i> Components
                     </a>
                 </li>
-            </ul> --}}
+            </ul>
         </div>
     </div>
 </nav>

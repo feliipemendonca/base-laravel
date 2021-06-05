@@ -54,25 +54,4 @@
             </div>
         </div>
     </x-slot>
-    <x-slot name="js">
-        <script src="//cdn.ckeditor.com/4.14.1/basic/ckeditor.js"></script>
-        <script>
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader()
-                    reader.onload = function(e) {
-                        $('#imagem').attr('src', e.target.result)
-                    }
-                    reader.readAsDataURL(input.files[0])
-                }
-            }
-            $('#input-image').change(function() {
-                readURL(this)
-            })
-
-            window.onload = function() {
-                CKEDITOR.replace('content');
-            };
-        </script>
-    </x-slot>
 </x-dashboard>

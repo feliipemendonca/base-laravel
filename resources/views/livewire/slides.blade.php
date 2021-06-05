@@ -25,6 +25,8 @@
                     <th scope="col" class="sort" data-sort="empresa">Title</th>
                     <th scope="col" class="sort" data-sort="usuario">Position</th>
                     <th scope="col" class="sort" data-sort="ativo">Ativo</th>
+                    <th scope="col" class="sort" data-sort="ativo">Incio</th>
+                    <th scope="col" class="sort" data-sort="ativo">Término</th>
                     <th scope="col" class="sort" data-sort="cadastro">Cadastro</th>
                     <th scope="col" class="sort" data-sort="cadastro">Atualizado</th>
                     <th scope="col" class="sort" data-sort="opcoes">Opções</th>
@@ -48,6 +50,12 @@
                             </p>
                         </td>
                         <td>
+                            {{ date('d-m-Y', strtotime($item->start_at)) }}
+                        </td>
+                        <td>
+                            {{ date('d-m-Y', strtotime($item->finish_at)) }}
+                        </td>
+                        <td>
                             {{ $item->created_at->format('d-m-Y') }}
                         </td>
                         <td>
@@ -55,7 +63,7 @@
                         </td>
                         <td>
                             <div class="dropdown">
-                                <a class="btn" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                <a class="btn text-danger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
                                     <i class="ni ni-archive-2"></i>Opções
                                 </a>

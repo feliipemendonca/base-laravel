@@ -27,15 +27,12 @@
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
-        <x-dashboard.sidebar />
+        @include('components.dashboard.sidebar')
     @endauth
 
     <div class="main-content">
         @auth()
-            @php
-                $title = (String)$title ?? null;
-            @endphp
-            <x-dashboard.navbar :title="$title"/>
+            @include('components.dashboard.navbar',['title' => (String)$title ?? null])
         @endauth
         <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
             <span class="mask bg-gradient-dark opacity-8"></span>
@@ -53,7 +50,7 @@
         {{ $content }}
         @auth()
         <div class="container-fluid">
-            <x-dashboard.footer />
+            @include('components.dashboard.footer')
         </div>
         @endauth
     </div>
@@ -99,6 +96,8 @@
         @endif
     </script>
     {{ @$js }}
+    <script src="//cdn.ckeditor.com/4.14.1/stander/ckeditor.js"></script>
+    <script src="{{ asset('argon/js/custom.js') }}"></script>
     <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
 </body>
 </html>

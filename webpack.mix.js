@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.browserSync('http://127.0.0.1')
     .js('resources/js/app.js', 'public/js')
+    .js('resources/js/dashboard.js', 'public/argon/js/custom.js')
     .sass('resources/sass/app.scss', 'public/css')
     // .copyDirectory('resources/images', 'public/images')
     .version()

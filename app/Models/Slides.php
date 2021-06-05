@@ -7,6 +7,15 @@ use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Model;
 class Slides extends Model
 {
     protected $table = 'slides';
+    protected $fillable = [
+        'files_id',
+        'title',
+        'link',
+        'position',
+        'active',
+        'start_at',
+        'finish_at'
+    ];
 
     public function files()
     {

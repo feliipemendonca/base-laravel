@@ -1,5 +1,5 @@
 <x-dashboard>
-    <x-slot name="title">{{ __('Slides / Adicionar') }}</x-slot>
+    <x-slot name="title">{{ __('Slides / Editar / '.$item->title) }}</x-slot>
     <x-slot name="header">
         {{-- @include('layouts.headers.cards') --}}
     </x-slot>
@@ -11,7 +11,7 @@
                     <div class="card-header border-0">
                         <div class="row">
                             <div class="col-8">
-                                <h3 class="mb-0">Adicionar</h3>
+                                <h3 class="mb-0">Editar</h3>
                             </div>
                             <div class="col-4 d-flex justify-content-end">
                                 <a href="javascript:history.back();" class="btn btn-danger btn-sm">Voltar</a>
@@ -94,28 +94,12 @@
                         <!-- Card footer -->
                         <div class="card-footer py-4">
                             <nav class="d-flex justify-content-end" aria-label="...">
-                                <button type="submit" class="btn btn-primary">Atualizar</button>
+                                <button type="submit" class="btn btn-dark">Atualizar</button>
                             </nav>
                         </div>
                     </x-form>
                 </div>
             </div>
         </div>
-    </x-slot>
-    <x-slot name="js">
-        <script>
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader()
-                    reader.onload = function(e) {
-                        $('#imagem').attr('src', e.target.result)
-                    }
-                    reader.readAsDataURL(input.files[0])
-                }
-            }
-            $('#input-image').change(function() {
-                readURL(this)
-            })
-        </script>
     </x-slot>
 </x-dashboard>
