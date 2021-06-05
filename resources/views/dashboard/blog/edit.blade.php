@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-12 col-lg-4">
                                     <div class="form-group">
-                                        <x-label for="Imagem" />
+                                        <x-label for="Imagem" /><br>
                                         <x-input name="file" type="file" id="input-image"/>
                                         <img id="imagem" class="img-fluid" src="{{ Storage::url($item->files->filename) }}">
                                         <x-error field="file" />
@@ -47,33 +47,12 @@
                         <!-- Card footer -->
                         <div class="card-footer py-4">
                             <nav class="d-flex justify-content-end" aria-label="...">
-                                <button type="submit" class="btn btn-primary">Atualizar</button>
+                                <button type="submit" class="btn btn-dark">Atualizar</button>
                             </nav>
                         </div>
                     </x-form>
                 </div>
             </div>
         </div>
-    </x-slot>
-    <x-slot name="js">
-        <script src="//cdn.ckeditor.com/4.14.1/basic/ckeditor.js"></script>
-        <script>
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader()
-                    reader.onload = function(e) {
-                        $('#imagem').attr('src', e.target.result)
-                    }
-                    reader.readAsDataURL(input.files[0])
-                }
-            }
-            $('#input-image').change(function() {
-                readURL(this)
-            })
-
-            window.onload = function() {
-                CKEDITOR.replace('content');
-            };
-        </script>
     </x-slot>
 </x-dashboard>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Blogs;
 use App\Models\Files;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BlogsController extends Controller
 {
@@ -93,6 +94,7 @@ class BlogsController extends Controller
             $file = new Files;
 
             try {
+                Storage::delete($blog->files->filename);
                 $file->upload($file, $request->file);
             } catch (\Throwable $th) {
                 // throw $th;
@@ -121,6 +123,13 @@ class BlogsController extends Controller
      */
     public function destroy(Blogs $blog)
     {
+        try {
+            Storage::delete($blog->files->filename);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->with('error','Erro ao apagar imagem. Por favor entrar em contao com o suporte!');
+        }
+
         try {
             $blog->delete();
         } catch (\Throwable $th) {

@@ -21,13 +21,12 @@
         <table class="table align-items-center table-flush">
             <thead class="thead-light">
                 <tr>
-                    <th scope="col" class="sort" data-sort="empresa">Image</th>
-                    <th scope="col" class="sort" data-sort="empresa">Title</th>
-                    {{-- <th scope="col" class="sort" data-sort="usuario">Position</th> --}}
-                    {{-- <th scope="col" class="sort" data-sort="ativo">Ativo</th> --}}
-                    <th scope="col" class="sort" data-sort="cadastro">Cadastro</th>
-                    <th scope="col" class="sort" data-sort="cadastro">Atualizado</th>
-                    <th scope="col" class="sort" data-sort="opcoes">Opções</th>
+                    <th scope="col" class="sort">Image</th>
+                    <th scope="col" class="sort">Title</th>
+                    <th scope="col" class="sort">Slug</th>
+                    <th scope="col" class="sort">Cadastro</th>
+                    <th scope="col" class="sort">Atualizado</th>
+                    <th scope="col" class="sort">Opções</th>
                 </tr>
             </thead>
             <tbody class="list">
@@ -36,17 +35,12 @@
                         <th>
                             <img src="{{ Storage::url($item->files->filename) }}" width="200">
                         </th>
-                        <td class="budget">
+                        <td>
                             {{ $item->title }}
                         </td>
-                        {{-- <td class="budget">
-                            {{ $item->position }}
-                        </td> --}}
-                        {{-- <td>
-                            <p class="badge badge-{{ $item->active == 1 ? 'success' : 'danger' }}">
-                                {{ $item->active == 1 ? 'Ativo' : 'Inativo' }}
-                            </p>
-                        </td> --}}
+                        <td>
+                            {{ $item->slug }}
+                        </td>
                         <td>
                             {{ $item->created_at->format('d-m-Y') }}
                         </td>
@@ -55,7 +49,7 @@
                         </td>
                         <td>
                             <div class="dropdown">
-                                <a class="btn" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                <a class="btn text-danger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
                                     <i class="ni ni-archive-2"></i>Opções
                                 </a>

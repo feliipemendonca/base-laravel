@@ -96,7 +96,7 @@
         @endif
     </script>
     {{ @$js }}
-    <script src="//cdn.ckeditor.com/4.14.1/stander/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script src="{{ asset('argon/js/custom.js') }}"></script>
     <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
 </body>
