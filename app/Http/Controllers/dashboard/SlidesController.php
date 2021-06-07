@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Files;
 use App\Models\Slides;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SlidesController extends Controller
 {
@@ -41,12 +42,14 @@ class SlidesController extends Controller
             $request['files_id'] = $file->id;
         } catch (\Throwable $th) {
             // throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao cadastrar imagem!');
         }
 
         try{
             Slides::create($request->all());
-        }catch(\Exception $e){
+        }catch(\Throwable $th){
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao cadastrar slide. Por favor entrar em contao com o suporte!');
         }
 
@@ -91,6 +94,7 @@ class SlidesController extends Controller
                 $file->upload($file, $request->file);
             } catch (\Throwable $th) {
                 // throw $th;
+                Log::error($th);
                 return redirect()->back()->with('error','Erro ao atualizar imagem!');
             }
 
@@ -102,8 +106,9 @@ class SlidesController extends Controller
 
         try{
             $slide->save();
-        }catch(\Exception $e){
+        }catch(\Throwable $th){
             // dd($e);
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao atualizar slide. Por favor entrar em contao com o suporte!');
         }
 
@@ -122,11 +127,14 @@ class SlidesController extends Controller
             Storage::delete($slide->files->filename);
         } catch (\Throwable $th) {
             //throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao apagar imagem. Por favor entrar em contao com o suporte!');
         }
         try{
             $slide->delete();
-        }catch(\Exception $e){
+        } catch (\Throwable $th) {
+            //throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao atualizar slide. Por favor entrar em contao com o suporte!');
         }
 

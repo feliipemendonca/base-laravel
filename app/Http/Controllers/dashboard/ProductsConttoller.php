@@ -7,6 +7,7 @@ use App\Http\Requests\ProductsRequest;
 use App\Models\Files;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class ProductsConttoller extends Controller
@@ -45,6 +46,7 @@ class ProductsConttoller extends Controller
             $file->upload($file, $request->file);
         } catch (\Throwable $th) {
             // throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao cadastrar imagem!');
         }
 
@@ -52,7 +54,8 @@ class ProductsConttoller extends Controller
         try {
             Products::create($request->all());
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao cadastrar produto!');
         }
 
@@ -98,6 +101,7 @@ class ProductsConttoller extends Controller
                 $file->upload($file, $request->file);
             } catch (\Throwable $th) {
                 // throw $th;
+                Log::error($th);
                 return redirect()->back()->with('error','Erro ao atualizar imagem!');
             }
 
@@ -109,6 +113,7 @@ class ProductsConttoller extends Controller
             $product->update($request->all());
         } catch (\Throwable $th) {
             // throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao atualizar produto!');
         }
 
@@ -127,12 +132,14 @@ class ProductsConttoller extends Controller
             Storage::delete($product->files->filename);
         } catch (\Throwable $th) {
             //throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao apagar imagem. Por favor entrar em contao com o suporte!');
         }
         try {
             $product->delete();
         } catch (\Throwable $th) {
             // throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao excluir produto!');
         }
 

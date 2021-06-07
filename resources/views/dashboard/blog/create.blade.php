@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="col-12 col-lg-4">
                                     <div class="form-group">
-                                        <x-label for="Imagem" />
+                                        <x-label for="Imagem" /><br>
                                         <x-input name="file" type="file" id="input-image"/>
                                         <img id="imagem" class="img-fluid" src="">
                                         <x-error field="file" class="text-danger" />
@@ -86,7 +86,7 @@
                         <!-- Card footer -->
                         <div class="card-footer py-4">
                             <nav class="d-flex justify-content-end" aria-label="...">
-                                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                <button type="submit" class="btn btn-dark">Cadastrar</button>
                             </nav>
                         </div>
                     </x-form>

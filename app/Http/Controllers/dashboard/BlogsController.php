@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BlogsRequest;
 use App\Models\Blogs;
 use App\Models\Files;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class BlogsController extends Controller
@@ -36,7 +38,7 @@ class BlogsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogsRequest $request)
     {
         $file = new Files;
 
@@ -44,6 +46,7 @@ class BlogsController extends Controller
             $file->upload($file, $request->file);
         } catch (\Throwable $th) {
             // throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao cadastrar imagem!');
         }
 
@@ -53,7 +56,8 @@ class BlogsController extends Controller
         try {
             Blogs::create($request->all());
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao cadastrar blog!');
         }
 
@@ -89,7 +93,7 @@ class BlogsController extends Controller
      * @param  \App\Models\Blogs  $blogs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blogs $blog)
+    public function update(BlogsRequest $request, Blogs $blog)
     {
         if($request->file):
             $file = new Files;
@@ -98,7 +102,7 @@ class BlogsController extends Controller
                 Storage::delete($blog->files->filename);
                 $file->upload($file, $request->file);
             } catch (\Throwable $th) {
-                // throw $th;
+                throw $th;
                 return redirect()->back()->with('error','Erro ao atualizar imagem!');
             }
 
@@ -110,6 +114,7 @@ class BlogsController extends Controller
             $blog->update($request->all());
         } catch (\Throwable $th) {
             // throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao atualizar blog!');
         }
 
@@ -128,6 +133,7 @@ class BlogsController extends Controller
             Storage::delete($blog->files->filename);
         } catch (\Throwable $th) {
             //throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao apagar imagem. Por favor entrar em contao com o suporte!');
         }
 
@@ -135,6 +141,7 @@ class BlogsController extends Controller
             $blog->delete();
         } catch (\Throwable $th) {
             // throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao excluir blog!');
         }
 

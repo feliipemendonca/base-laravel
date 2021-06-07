@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Settings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 use function GuzzleHttp\Promise\settle;
 
@@ -42,6 +43,7 @@ class SettingsConttoller extends Controller
             Settings::create($request->all());
         } catch (\Throwable $th) {
             //throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao cadastrar configuração.');
         }
         return redirect()->route('dashboard.settings.index')->with('success','Configuração cadastrado com sucesso!');
@@ -82,6 +84,7 @@ class SettingsConttoller extends Controller
             $setting->update($request->all());
         } catch (\Throwable $th) {
             //throw $th;
+            Log::error($th);
             return redirect()->back()->with('error','Erro ao atualizar configuração.');
         }
         return redirect()->route('dashboard.settings.index')->with('success','Configuração atualizado com sucesso!');

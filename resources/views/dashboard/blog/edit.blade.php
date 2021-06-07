@@ -1,5 +1,5 @@
 <x-dashboard>
-    <x-slot name="title">{{ __('Blog / Adicionar') }}</x-slot>
+    <x-slot name="title">{{ __('Blog / Editar / '.$item->title) }}</x-slot>
     <x-slot name="header">
         {{-- @include('layouts.headers.cards') --}}
     </x-slot>
@@ -24,9 +24,49 @@
                             <div class="row">
                                 <div class="col-12 col-lg-8">
                                     <div class="form-group">
-                                        <x-label for="Title" />
+                                        <x-label for="Título" />
                                         <x-input name="title" class="form-control" value="{{ $item->title }}" />
                                         <x-error field="title" class="text-danger" />
+                                    </div>
+                                    <div class="form-group">
+                                        <x-label for="Palavras Chaves" />
+                                        <x-input name="tags" class="form-control" value="{{ $item->tags }}" />
+                                        <x-error field="tags" class="text-danger" />
+                                    </div>
+                                    <div class="form-group">
+                                        <x-label for="Descrição do post" />
+                                        <x-input name="seo" class="form-control" value="{{ $item->seo }}" />
+                                        <x-error field="seo" class="text-danger" />
+                                    </div>
+                                    <div class="form-group">
+                                        <x-label for="Caption(texto que ficar abaixo da imagem)" />
+                                        <x-input name="caption" class="form-control" value="{{ $item->caption }}" />
+                                        <x-error field="caption" class="text-danger" />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-6">
+                                                <x-label for="ativo" />
+                                                <select name="active" class="form-control">
+                                                    <option value="1" {{ $item->active == 1 ? 'selected' : '' }}>Sim</option>
+                                                    <option value="0" {{ $item->active == 0 ? 'selected' : '' }}>Não</option>
+                                                </select>
+                                                <x-error field="active" class="text-danger" />
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <x-label for="Publicação" />
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="ni ni-calendar-grid-58"></i>
+                                                        </span>
+                                                    </div>
+                                                    <x-input class="form-control" placeholder="Inicio" name="publish_at"
+                                                        type="date" value="{{ $item->publish_at }}" />
+                                                </div>
+                                                <x-error field="publish_at" class="text-danger" />
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <x-label for="Conteúdo" />
@@ -39,7 +79,7 @@
                                         <x-label for="Imagem" /><br>
                                         <x-input name="file" type="file" id="input-image"/>
                                         <img id="imagem" class="img-fluid" src="{{ Storage::url($item->files->filename) }}">
-                                        <x-error field="file" />
+                                        <x-error field="file" class="text-danger" />
                                     </div>
                                 </div>
                             </div>

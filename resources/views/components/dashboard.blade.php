@@ -78,23 +78,6 @@
                 'error',
             )
         @endif
-
-        @if(session('status'))
-            Swal.fire(
-                'Sucesso',
-                '{!! session('success') !!}',
-                'success'
-                
-            )
-        @endif
-
-        @if(session('info'))
-            Swal.fire(
-                'Erro!',
-                '{!! session('error') !!}',
-                'error',
-            )
-        @endif
     </script>
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
