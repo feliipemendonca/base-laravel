@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\dashboard\BlogsController;
+use App\Http\Controllers\dashboard\ContactsController;
 use App\Http\Controllers\dashboard\PagesController;
 use App\Http\Controllers\dashboard\ProductsConttoller;
 use App\Http\Controllers\dashboard\SettingsConttoller;
@@ -41,5 +42,6 @@ Route::group(['prefix' => 'dashboard' ,'as' => 'dashboard.','middleware' => 'aut
 	Route::resource('pages', PagesController::class);
 	Route::resource('settings', SettingsConttoller::class);
 	Route::resource('products', ProductsConttoller::class);
+	Route::resource('contacts', ContactsController::class);
 });
 

@@ -140,6 +140,15 @@
                 @endforeach
             </ul>
             <hr class="my-3">
+            <h6 class="navbar-heading text-muted">Contatos</h6>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::is('dashboard.contacts') ? 'active' : '' }}" href="{{ route('dashboard.contacts.index') }}">
+                        <i class="fas fa-bullhorn text-danger"></i>Contatos
+                    </a>
+                </li>
+            </ul>
+            <hr class="my-3">
             <h6 class="navbar-heading text-muted">Configurações</h6>
             <ul class="navbar-nav">
                 @foreach ($settings as $item)
