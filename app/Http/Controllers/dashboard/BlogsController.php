@@ -48,6 +48,7 @@ class BlogsController extends Controller
         }
 
         $request['files_id'] = $file->id;
+        $request['users_id'] = auth()->user()->id;
 
         try {
             Blogs::create($request->all());

@@ -13,8 +13,14 @@ class Blogs extends Model
     protected $table = "blogs";
     protected $fillable = [
         'files_id',
+        'users_id',
         'title',
+        'tags',
+        'caption',
+        'seo',
         'description',
+        'publish_at',
+        'active'
     ];
 
     public function sluggable(): array
