@@ -5,7 +5,11 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
+use App\Models\Files;
+use App\Models\UsersHasFiles;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -27,13 +31,31 @@ class ProfileController extends Controller
      */
     public function update(ProfileRequest $request)
     {
-        if (auth()->user()->id == 1) {
-            return back()->withErrors(['not_allow_profile' => __('You are not allowed to change data for a default user.')]);
-        }
+        if($request->file){
+            $file = new Files;
 
+            if(auth()->user()->hasfiles)
+                auth()->user()->hasfiles->delete();
+                Storage::delete(auth()->user()->hasfiles->file->filename);
+            
+            try {
+                $file->upload($file, $request->file);
+
+                UsersHasFiles::create([
+                    'users_id' => auth()->user()->id,
+                    'files_id' => $file->id
+                ]);
+
+            } catch (\Throwable $th) {
+                throw $th;
+                Log::error($th);
+                return redirect()->back()->with('error','Erro ao cadastrar imagem!');
+            }
+        }
+        
         auth()->user()->update($request->all());
 
-        return back()->withStatus(__('Profile successfully updated.'));
+       return redirect()->back()->with('success','Dados atualizados com sucesso.');
     }
 
     /**
@@ -44,12 +66,9 @@ class ProfileController extends Controller
      */
     public function password(PasswordRequest $request)
     {
-        if (auth()->user()->id == 1) {
-            return back()->withErrors(['not_allow_password' => __('You are not allowed to change the password for a default user.')]);
-        }
 
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
-        return back()->withPasswordStatus(__('Password successfully updated.'));
+        return back()->with('success', 'Senha atualizada com sucesso.');
     }
 }

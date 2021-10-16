@@ -21,7 +21,7 @@
                     aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                            {{-- <img alt="Image placeholder" src="{{ asset('images/min/avatar-woman.svg') }}"> --}}
+                            <img alt="Image placeholder" src="{{ auth()->user()->hasfiles ? Storage::url(auth()->user()->hasfiles->file->filename) :  asset('images/min/avatar-woman.svg') }}">
                         </span>
                         <div class="media-body ml-2 d-none d-lg-block">
                             <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name }}</span>
@@ -34,17 +34,17 @@
                     </div>
                     <a href="{{ route('dashboard.profile.edit') }}" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
-                        <span>{{ __('My profile') }}</span>
+                        <span>{{ __('Minha Conta') }}</span>
                     </a>
-                    <a href="#" class="dropdown-item">
+                    <a href="{{ route('dashboard.settings.index') }}" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
-                        <span>{{ __('Settings') }}</span>
+                        <span>{{ __('Configurações') }}</span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                         <i class="ni ni-user-run"></i>
-                        <span>{{ __('Logout') }}</span>
+                        <span>{{ __('Sair') }}</span>
                     </a>
                 </div>
             </li>

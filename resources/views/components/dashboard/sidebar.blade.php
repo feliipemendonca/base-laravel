@@ -27,6 +27,17 @@
                 ['link' => 'dashboard.blog.edit']
             ]
         ],
+        [
+            'name' => 'Usuários',
+            'icon' => "<i class='fab fa-slideshare text-blue'></i>",
+            'link' => 'dashboard.users.index',
+            'links' => [
+                ['link' => 'dashboard.users.index'],
+                ['link' => 'dashboard.users.create'],
+                ['link' => 'dashboard.users.show'],
+                ['link' => 'dashboard.users.edit']
+            ]
+        ],
         // [
         //     'name' => 'Páginas Estáticas',
         //     'icon' => "<i class='ni ni-briefcase-24 text-danger'></i>",
@@ -85,28 +96,28 @@
                     aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                            <img alt="Image placeholder" src="{{ asset('images/min/avatar-woman.svg') }}">
-                            Argila
+                            <img alt="Image placeholder" src="{{ auth()->user()->hasfiles ? Storage::url(auth()->user()->hasfiles->file->filename) : asset('images/min/avatar-woman.svg') }}">
+                            {{-- {{ auth()->user()->name }} --}}
                         </span>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
                     <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">{{ __('Welcome!') }}</h6>
+                        <h6 class="text-overflow m-0">{{ __('Bem Vindo!') }}</h6>
                     </div>
                     <a href="{{ route('dashboard.profile.edit') }}" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
-                        <span>{{ __('My profile') }}</span>
+                        <span>{{ __('Minha conta') }}</span>
                     </a>
-                    <a href="#" class="dropdown-item">
+                    <a href="{{ route('dashboard.settings.index') }}" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
-                        <span>{{ __('Settings') }}</span>
+                        <span>{{ __('Configurações') }}</span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                         <i class="ni ni-user-run"></i>
-                        <span>{{ __('Logout') }}</span>
+                        <span>{{ __('Sair') }}</span>
                     </a>
                 </div>
             </li>

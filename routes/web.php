@@ -6,6 +6,8 @@ use App\Http\Controllers\dashboard\PagesController;
 use App\Http\Controllers\dashboard\ProductsConttoller;
 use App\Http\Controllers\dashboard\SettingsConttoller;
 use App\Http\Controllers\dashboard\SlidesController;
+use App\Http\Controllers\dashboard\UsersController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,20 +30,20 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'dashboard' ,'as' => 'dashboard.','middleware' => 'auth'], function () {
-	Route::resource('user', 'App\Http\Controllers\dashboard\UserController', ['except' => ['show']]);
+	
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\dashboard\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\dashboard\ProfileController@update']);
-	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade'); 
-	Route::get('map', function () {return view('pages.maps');})->name('map');
-	Route::get('icons', function () {return view('pages.icons');})->name('icons'); 
-	Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\dashboard\ProfileController@password']);
 
-	Route::resource('slides', SlidesController::class);
-	Route::resource('blog', BlogsController::class);
-	Route::resource('pages', PagesController::class);
-	Route::resource('settings', SettingsConttoller::class);
-	Route::resource('products', ProductsConttoller::class);
-	Route::resource('contacts', ContactsController::class);
+	Route::resources([
+		'slides'	=> SlidesController::class,
+		'blog' 		=> BlogsController::class,
+		'pages' 	=> PagesController::class,
+		'settings' 	=> SettingsConttoller::class,
+		'products' 	=> ProductsConttoller::class,
+		'contacts' 	=> ContactsController::class,
+		'users' 	=> UsersController::class
+	]);
+
 });
 

@@ -12,32 +12,19 @@ use Illuminate\Support\Facades\Storage;
 
 class BlogsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         return view('dashboard.blog.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         return view('dashboard.blog.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(BlogsRequest $request)
     {
         $file = new Files;
@@ -64,35 +51,19 @@ class BlogsController extends Controller
         return redirect()->route('dashboard.blog.index')->with('success','Blog Cadastrado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Blogs  $blogs
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Blogs $blogs)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Blogs  $blogs
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit(Blogs $blog)
     {
         return view('dashboard.blog.edit',['item' => $blog]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Blogs  $blogs
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function update(BlogsRequest $request, Blogs $blog)
     {
         if($request->file):
@@ -121,12 +92,7 @@ class BlogsController extends Controller
         return redirect()->route('dashboard.blog.index')->with('success','Blog atualizado com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Blogs  $blogs
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Blogs $blog)
     {
         try {
